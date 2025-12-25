@@ -179,33 +179,21 @@ bool ask_to_ab_reboot(Device* device) {
 }
 
 bool ask_to_continue_unverified(Device* device) {
-  if (get_build_type() == "user") {
-    return false;
-  } else {
-    device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
-    return yes_no(device, "Signature verification failed", "Install anyway?");
-  }
+  device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
+  return yes_no(device, "Signature verification failed", "Install anyway?");
 }
 
 bool ask_to_continue_downgrade(Device* device) {
-  if (get_build_type() == "user") {
-    return false;
-  } else {
-    device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
-    return yes_no(device, "This package will downgrade your system", "Install anyway?");
-  }
+  device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
+  return yes_no(device, "This package will downgrade your system", "Install anyway?");
 }
 
 bool ask_to_continue_spl_downgrade(Device* device) {
-  if (get_build_type() == "user") {
-    return false;
-  } else {
-    device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
-    return yes_no(device,
-                  "SPL downgrade detected, installing a SPL downgrade OTA can cause /data fail to "
-                  "decrypt and device fails to boot.",
-                  "Install anyway?");
-  }
+  device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
+  return yes_no(device,
+                "SPL downgrade detected, installing a SPL downgrade OTA can cause /data fail to "
+                "decrypt and device fails to boot.",
+                "Install anyway?");
 }
 
 static bool ask_to_wipe_data(Device* device) {
